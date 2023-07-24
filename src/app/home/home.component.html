@@ -1,0 +1,14 @@
+<h1 class="text-center mt-5 mb-4"> {{ titre }} </h1>
+
+    <div class="container-card">
+
+        <div class="card mx-auto mt-5 rounded-4" style="width: 18rem;" *ngFor="let elmt of recettes">
+
+            <img src="{{ elmt.photo }}" width="95%" height="250px" alt="" class="mx-auto rounded-4 mt-3 ">
+            <h2 class="mt-2 mb-3 text-center">{{ elmt.titre }}</h2>
+            <div class="btn1 ">
+                <app-button-detail [difficulte]="elmt.difficulte" [cout]="elmt.cout" [tempsPrep]="elmt.tempsPrep"
+                    [tempsCuisson]="elmt.tempsCuisson"></app-button-detail>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,23 @@
+<!-- <button (mouseenter)="changeText()" (mouseleave)="changeText()" class="btn btn-primary btn-lg mb-4 mx-4">{{ affiche ? 'Cacher la recette' : 'Voir la recette' }}</button>
+<div *ngIf="affiche">
+
+    <p >{{ descriptif }}</p>
+    <p>{{ ingredients}}</p>
+
+</div>  -->
+
+<button (mouseenter)="btn1()" (mouseleave)="btn1()" class="btn btn-success btn-lg mb-4 mx-4 btn1 ">{{ btn1_ ? 'Cacher' : 'Temps' }}</button>
+<button (mouseenter)="btn2()" (mouseleave)="btn2()" class="btn btn-success btn-lg mb-4 mx-4 btn2 ">{{ btn2_ ? 'Cacher' : 'Détails' }}</button>
+
+<div *ngIf="btn1_">
+
+    <p class="ms-4">Préparation : {{ tempsPrep }} min</p>
+    <p class="ms-4">Cuisson : {{ tempsCuisson}} min</p>
+
+</div>
+<div *ngIf="btn2_">
+
+    <p class="ms-4">Difficulté de niveau : {{ difficulte }}</p>
+    <p class="ms-4">Coût : {{ cout }}</p>
+
+</div> 

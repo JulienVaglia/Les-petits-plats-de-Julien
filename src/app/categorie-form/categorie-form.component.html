@@ -1,0 +1,9 @@
+<form #form="ngForm" class="mt-5" (submit)="formulaire(form, id)" >
+
+    <div class="mb-4">
+        <label for="titre" class="form-label ms-5"> Catégorie :</label>
+        <input [(ngModel)]="categorie.titre" name="titre" type="text" class="form-control w-50 ms-5 shadow p-2" id="titre" >
+    </div>
+
+    <button type="submit" class="btn btn-primary ms-5">Envoyer</button>
+</form>
