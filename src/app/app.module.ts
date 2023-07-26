@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ListRecipeComponent } from './list-recipe/list-recipe.component';
 import { CategorieComponent } from './categorie/categorie.component';
 import { CategorieFormComponent } from './categorie-form/categorie-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CategorieFormComponent } from './categorie-form/categorie-form.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

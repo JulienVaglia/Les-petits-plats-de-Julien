@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { CategorieService } from '../services/categorie.service';
 
 @Component({
   selector: 'app-categorie',
@@ -9,23 +9,20 @@ import { CategorieService } from '../services/categorie.service';
   styleUrls: ['./categorie.component.css']
 })
 export class CategorieComponent {
+  categories: any
+  constructor(private http: HttpClient) {
 
-  constructor(private cs: CategorieService) {
-
+    // console.log(this.categories);    
   }
-  
-    categories: any
 
-    delete(id:any){
+  delete(id: any) {
 
-      this.cs.deleteCategorie(id);
-      this.ngOnInit()
+    this.http.post('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=delete&id=' + id, JSON.stringify(id)).toPromise().then((response: any) => { this.ngOnInit() })
+  }
 
-    }
+  ngOnInit(): void {
 
-    ngOnInit() :void {
-
-      this.categories=this.cs.readCategorie();
-    }
+    this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=readAll').toPromise().then((response: any) => { this.categories = response; })
+  }
 
 }

@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { CategorieService } from '../services/categorie.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { AsyncService } from '../services/API/async.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-categorie-form',
@@ -11,42 +14,46 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategorieFormComponent {
 
-id: string | null ='0';
-categorie = {
-  titre: ''
-}
+  wait: any
+  reponse: any
 
-constructor( private cs: CategorieService, private router: Router, private route: ActivatedRoute) {
+  id: string | null = '0';
+  categorie = {
+    titre: ''
+  }
 
-}
-
-formulaire(form: NgForm , id: any){
-
-  if (id == null) {
-
-    let test = this.cs.createCategorie(form.value);
-
-  } else {
-
-    this.cs.updateCategorie(form.value, id);
+  constructor(private router: Router, private route: ActivatedRoute, private async: AsyncService, private http: HttpClient) {
 
   }
 
+  formulaire(form: NgForm, id: any) {
+console.log(this.id);
 
-  this.router.navigate(['categorie'])
-  // console.log(test);
+    if ( this.id == null || this.id =='0' ) {
 
-}
+      this.wait = this.http.post('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=create', JSON.stringify(form.value)).toPromise().then((response: any) => { console.log(response); });
 
-ngOnInit() {
+    } else {
 
-  this.id = this.route.snapshot.paramMap.get('id');
+      this.http.put('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=modify&id=' + id, JSON.stringify(id)).toPromise().then((response: any) => { this.ngOnInit() })
 
-  if (this.id != null) {
+    }
 
-    this.categorie = this.cs.readOneCategorie(this.id)
+    this.reponse = this.async.waitForResponse(this.wait);
+    console.log(this.reponse);
+
+    this.router.navigate(['categorie'])
+    // console.log(test);
 
   }
 
-}
+  ngOnInit() {
+
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    if (this.id != null) {
+
+    }
+
+  }
 }

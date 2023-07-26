@@ -2,17 +2,17 @@
 
     <img src="{{ elmt.photo }}" width="90%" height="400px" alt="" class="mx-auto rounded-4 mt-3 ">
     <h2 class="mt-2 mb-3">{{ elmt.titre }}</h2> -->
-
-<div *ngFor="let recette of recipes" class="p-0 m-3 card col-md-4 mt-3 w-25" style="width: 15rem;">
-    <img src="{{ recette.photo }}" class=" card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title text-center">{{ recette.titre }}</h5>
-        <p class="card-text">{{ recette.descriptif }}</p>
-    </div>
-    <div class="card-body">
-        <a class="card-link btn btn-success">Voir la recette</a>
-        <a [routerLink]="['/formRecipe',recette.id]" class="card-link btn btn-success">Modifier</a>
-        <a (click)="delete(recette.id)" class="card-link btn btn-success">Supprimer</a>
+<div class="d-flex flex-wrap">
+    <div *ngFor="let recette of recipes" class="p-0 m-3 card col-md-4 mt-3 w-25" style="width: 15rem;">
+        <img src="{{ recette.photo }}" class=" card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-center">{{ recette.titre }}</h5>
+            <p class="card-text">{{ recette.descriptif }}</p>
+        </div>
+        <div class="card-body">
+            <a class="card-link btn btn-success">Voir la recette</a>
+            <a [routerLink]="['/formRecipe',recette.id]" class="card-link btn btn-outline-success">Modifier</a>
+            <a (click)="delete(recette.id)" class="card-link btn btn-danger">Supprimer</a>
+        </div>
     </div>
 </div>
-

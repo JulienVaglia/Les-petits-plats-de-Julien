@@ -1,8 +1,14 @@
-<div *ngFor="let categorie of categories" class="p-0 m-3 card col-md-4 mt-3 w-25 shadow p-2 border-0 container" style="width: 18rem;">
-    <h5 class="text-center">{{ categorie.titre }}</h5>
-    <div class="card-body text-center">
-        <!-- <a class="card-link btn btn-success">Voir la categorie</a> -->
-        <a [routerLink]="['/formCategorie',categorie.id]" class="card-link btn btn-success">Modifier</a>
-        <a (click)="delete(categorie.id)" class="card-link btn btn-success">Supprimer</a>
+<div class="d-flex flex-wrap">
+    <div *ngFor="let categorie of categories" class="p-0 m-3 card col-md-4 mt-3 shadow p-2 border-0 container" style="width: 18rem;">
+
+        <h5 class="text-center">{{ categorie.titre }}</h5>
+
+        <div class="card-body text-center">
+
+            <a [routerLink]="['/formCategorie',categorie.id]" class="card-link btn btn-outline-success">Modifier</a>
+
+            <a (click)="delete(categorie.id)" class="card-link btn btn-danger">Supprimer</a>
+
+        </div>
     </div>
 </div>
