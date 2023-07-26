@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { RecetteService } from '../services/recette.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { CategorieService } from '../services/categorie.service';
+import { HttpService } from '../services/API/http.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -12,55 +11,62 @@ import { CategorieService } from '../services/categorie.service';
 })
 export class RecipeFormComponent {
 
-  constructor(private rs: RecetteService, private cs: CategorieService, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: HttpService, private router: Router, private route: ActivatedRoute) {
 
   }
   categories: any;
 
   //Récupération des paramètres pour faire la modification
-  id: string | null = '0'
+  id: any
   recette = {
+    id: 0,
     titre: '',
-    descriptif: '',
-    categorie: '',
-    ingredients: [],
+    description: '',
+    id_categorie: '',
     difficulte: '',
-    tempsPrep: '',
-    tempsCuisson: '',
+    tempsprep: '',
+    tempscuisson: '',
     cout: '',
     photo: '',
-    etapes: []
   }
 
-  formulaire(form: NgForm, id: any) {
-    // return console.log(id);
+  formulaire(form: NgForm) {
+    console.log(form.value);
+    
 
-    if (id == null) {
+    this.http.postData("recette", form.value).subscribe((data)=>{
 
-      let test = this.rs.createRecipe(form.value);
-
-    } else {
-
-      this.rs.updateRecipe(form.value, id);
-
-    }
-
+      console.log("ok");
+      
+    })
 
     this.router.navigate(['listRecipe'])
-    // console.log(test);
 
 
   }
 
   ngOnInit() {
 
-    this.categories = this.cs.readCategorie()
+    this.http.getData("categorie").subscribe({
+
+      next: (data: string) => this.categories = (data),
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Success')
+
+    });
+
     this.id = this.route.snapshot.paramMap.get('id');
 
     if (this.id != null) {
 
-      this.recette = this.rs.readOneRecipe(this.id)
-      
+      this.http.getData("recette", this.id).subscribe({
+
+        next: (data: string) => this.categories = (data),
+        error: (err: Error) => console.error('Observer got an error: ' + err),
+        complete: () => console.log('Success')
+  
+      });
+
     }
 
   }

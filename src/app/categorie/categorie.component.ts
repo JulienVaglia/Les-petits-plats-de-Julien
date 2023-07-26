@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { HttpService } from '../services/API/http.service';
 
 @Component({
   selector: 'app-categorie',
@@ -10,19 +10,39 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategorieComponent {
   categories: any
-  constructor(private http: HttpClient) {
-
-    // console.log(this.categories);    
+  constructor(private http: HttpService) {
+ 
   }
 
   delete(id: any) {
 
-    this.http.post('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=delete&id=' + id, JSON.stringify(id)).toPromise().then((response: any) => { this.ngOnInit() })
+    this.http.deleteData("categorie", id).subscribe({
+
+      next: (data: string) => this.getData,
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+      complete: () => this.getData()
+
+    });
+
   }
+
+
+  getData(){
+
+this.http.getData("categorie").subscribe({
+
+      next: (data: string) => this.categories = (data),
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notificationInit')
+
+    });
+  }
+
 
   ngOnInit(): void {
 
-    this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=readAll').toPromise().then((response: any) => { this.categories = response; })
+    this.getData()
+    
   }
 
 }

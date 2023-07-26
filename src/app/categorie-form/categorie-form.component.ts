@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CategorieService } from '../services/categorie.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncService } from '../services/API/async.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/API/http.service';
 
 
 @Component({
@@ -14,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CategorieFormComponent {
 
+  categories: any
   wait: any
   reponse: any
 
@@ -22,38 +22,58 @@ export class CategorieFormComponent {
     titre: ''
   }
 
-  constructor(private router: Router, private route: ActivatedRoute, private async: AsyncService, private http: HttpClient) {
+  constructor(private router: Router, private route: ActivatedRoute, private async: AsyncService, private http: HttpService) {
 
   }
 
   formulaire(form: NgForm, id: any) {
-console.log(this.id);
 
-    if ( this.id == null || this.id =='0' ) {
 
-      this.wait = this.http.post('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=create', JSON.stringify(form.value)).toPromise().then((response: any) => { console.log(response); });
+      this.http.postData("categorie", form.value).subscribe({
 
-    } else {
+        next: (data) => console.log(data),
+        error: (err: Error) => console.error('Observer got an error: ' + err),
+        complete: () => console.log('Observer got a complete notification')
 
-      this.http.put('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/categorie.php?action=modify&id=' + id, JSON.stringify(id)).toPromise().then((response: any) => { this.ngOnInit() })
+      });
 
-    }
-
-    this.reponse = this.async.waitForResponse(this.wait);
-    console.log(this.reponse);
-
-    this.router.navigate(['categorie'])
-    // console.log(test);
+      this.router.navigate(['categorie'])
 
   }
 
-  ngOnInit() {
 
-    this.id = this.route.snapshot.paramMap.get('id');
+  getData() {
 
-    if (this.id != null) {
+    this.http.getData("categorie").subscribe({
 
-    }
+      next: (data: string) => this.categories = (data),
+      error: (err: Error) => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notificationInit')
+
+    });
+  }
+
+
+  ngOnInit(): void {
+
+    this.getData()
 
   }
+
+  // ngOnInit() {
+
+  //   this.id = this.route.snapshot.paramMap.get('id');
+
+  //   if (this.id != null) {
+
+  //   }
+
+  // }
+
+
 }
+
+
+
+
+
