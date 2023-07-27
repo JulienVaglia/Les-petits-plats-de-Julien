@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecetteService } from '../services/recette.service';
+import { HttpService } from '../services/API/http.service';
 
 @Component({
   selector: 'app-list-recipe',
@@ -8,21 +8,39 @@ import { RecetteService } from '../services/recette.service';
 })
 export class ListRecipeComponent {
 
-  constructor(private rs: RecetteService) {
+  constructor(private http: HttpService) {
 
   }
   
     recipes: any
 
-    delete(id:any){
+    delete(id: any) {
 
-      this.rs.deleteRecipe(id);
-      this.ngOnInit()
-
+      this.http.deleteData("recette", id).subscribe({
+  
+        
+        
+        next: (data) => this.getData(),
+        error: (err: Error) => console.error('Observer got an error: ' + err),
+        complete: () => this.getData()
+  
+      });
+  
     }
+
+    getData(){
+
+      this.http.getData("recette").subscribe({
+      
+            next: (data: string) => this.recipes = (data),
+            error: (err: Error) => console.error('Observer got an error: ' + err),
+            complete: () => console.log('Observer got a complete notification')
+      
+          });
+        }
 
     ngOnInit() :void {
 
-      this.recipes=this.rs.readRecipes();
+      this.getData();
     }
 }

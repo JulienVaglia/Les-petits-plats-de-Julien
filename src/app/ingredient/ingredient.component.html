@@ -1,0 +1,16 @@
+<h1 class="text-center mt-3 mb-5">Liste des ingrédients</h1>
+
+<div class="d-flex flex-wrap">
+    <div *ngFor="let ingredient of ingredients" class="p-0 m-3 card col-md-4 mt-3 shadow p-2 border-0 container" style="width: 18rem;">
+
+        <h5 class="text-center">{{ ingredient.titre }}</h5>
+
+        <div class="card-body text-center">
+
+            <a [routerLink]="['/formIngredient',ingredient.id]" class="card-link btn btn-outline-success">Modifier</a>
+
+            <a (click)="delete(ingredient.id)" class="card-link btn btn-danger">Supprimer</a>
+
+        </div>
+    </div>
+</div>

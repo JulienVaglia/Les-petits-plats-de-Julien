@@ -61,7 +61,7 @@ export class RecipeFormComponent {
 
       this.http.getData("recette", this.id).subscribe({
 
-        next: (data: string) => this.categories = (data),
+        next: (data) => this.recette = (data),
         error: (err: Error) => console.error('Observer got an error: ' + err),
         complete: () => console.log('Success')
   

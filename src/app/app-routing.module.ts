@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+
 import { HomeComponent } from './home/home.component';
+
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { ListRecipeComponent } from './list-recipe/list-recipe.component';
+
 import { CategorieFormComponent} from './categorie-form/categorie-form.component';
 import { CategorieComponent } from './categorie/categorie.component';
+
+import { IngredientFormComponent} from './ingredient-form/ingredient-form.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
 
 
 
@@ -19,6 +25,10 @@ const routes: Routes = [
   { path : "formCategorie",component: CategorieFormComponent },
   { path : "formCategorie/:id",component: CategorieFormComponent },
   { path : "categorie",component: CategorieComponent },
+  { path : "formIngredient",component: IngredientFormComponent },
+  { path : "formIngredient/:id",component: IngredientFormComponent },
+  { path : "ingredient",component: IngredientComponent },
+
 
 ]
 

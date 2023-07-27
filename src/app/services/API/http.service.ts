@@ -16,7 +16,7 @@ export class HttpService {
 
     if (id != null) {
 
-      return this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/' + table + '.php?action=readOne&id')
+      return this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/' + table + '.php?action=readOne&id=' +id)
 
 
     } else {

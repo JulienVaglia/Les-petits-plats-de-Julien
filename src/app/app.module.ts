@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
@@ -9,9 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { FormsModule } from '@angular/forms';
 import { ListRecipeComponent } from './list-recipe/list-recipe.component';
+
 import { CategorieComponent } from './categorie/categorie.component';
 import { CategorieFormComponent } from './categorie-form/categorie-form.component';
+
 import { HttpClientModule } from '@angular/common/http';
+
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeFormComponent,
     ListRecipeComponent,
     CategorieComponent,
-    CategorieFormComponent
+    CategorieFormComponent,
+    IngredientComponent,
+    IngredientFormComponent
   ],
   imports: [
     BrowserModule,
