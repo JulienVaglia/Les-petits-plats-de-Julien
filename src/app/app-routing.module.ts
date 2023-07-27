@@ -26,7 +26,8 @@ const routes: Routes = [
   { path : "formCategorie/:id",component: CategorieFormComponent },
   { path : "categorie",component: CategorieComponent },
   { path : "formIngredient",component: IngredientFormComponent },
-  { path : "formIngredient/:id",component: IngredientFormComponent },
+  { path : "formIngredient/:id_recette",component: IngredientFormComponent },
+  { path : "formIngredient/:id_recette/:id",component: IngredientFormComponent },
   { path : "ingredient",component: IngredientComponent },
 
 

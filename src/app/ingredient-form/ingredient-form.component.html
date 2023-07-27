@@ -1,14 +1,31 @@
-<form #form="ngForm" class="mt-5" (submit)="formulaire(form, id)" >
+<form #form="ngForm" class="mt-5 d-flex flex-wrap " (submit)="formulaire(form)" >
 
-    <div class="mb-4">
-        <label for="titre" class="form-label ms-5"> Ingrédient :</label>
+    <div class="mb-4 w-50">
 
-        <input [(ngModel)]="ingredient.titre" name="titre" type="text" class="form-control w-50 ms-5 shadow p-2" id="titre" >
+        <h2 class="ms-4 mb-5">Création d'un ingrédient :</h2>
 
-        <input [(ngModel)]="ingredient.quantite" name="quantite" type="text" class="form-control w-50 ms-5 shadow p-2" id="quantite" >
+        <label for="titre" class="form-label ms-5">Nom : </label>
+        <input [(ngModel)]="ingredient.titre" name="titre" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="titre">
+
+        <label for="quantite" class="form-label ms-5">Quantité : </label>
+        <input [(ngModel)]="ingredient.quantite" name="quantite" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="quantite">
         
-        <input [(ngModel)]="ingredient.unite" name="unite" type="text" class="form-control w-50 ms-5 shadow p-2" id="unite" >
+        <label for="unite" class="form-label ms-5">Unité : </label>
+        <input [(ngModel)]="ingredient.unite" name="unite" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="unite">
+    </div>
+
+    <input type="hidden" name="id" [(ngModel)]="ingredient.id" >
+    <input type="hidden" name="id_recette" [(ngModel)]="ingredient.id_recette" >
+
+
+    <div class="w-50">
+
+        <h2>Liste des ingrédients :</h2>
+
     </div>
 
     <button type="submit" class="btn btn-primary ms-5">Envoyer</button>
 </form>
+
+
+

@@ -8,16 +8,15 @@ import { HttpService } from '../services/API/http.service';
 })
 export class IngredientComponent {
 
-  ingredients: any
-
   constructor(private http: HttpService) { }
 
+  ingredients: any
 
-  delete(id: string) {
+  delete(id: any) {
 
     this.http.deleteData("ingredient", id).subscribe({
 
-      next: (data: string) => this.getData,
+      next: (data) => this.getData,
       error: (err: Error) => console.error('Observer got an error: ' + err),
       complete: () => this.getData()
 
@@ -27,10 +26,10 @@ export class IngredientComponent {
 
   getData() {
 
-    this.http.getData("categorie").subscribe({
+    this.http.getData("ingredient").subscribe({
 
-      next: (data: string) => this.ingredients = (data),
-      error: (err: Error) => console.error('Observer got an error: ' + err),
+      next: (data) => this.ingredients = data,
+      error: (err: Error) => console.log('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notificationInit')
 
     });
@@ -39,7 +38,5 @@ export class IngredientComponent {
   ngOnInit(): void {
 
     this.getData()
-
   }
-
 }

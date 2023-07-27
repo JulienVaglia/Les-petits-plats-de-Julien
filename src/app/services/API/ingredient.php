@@ -9,8 +9,8 @@ if( $_GET['action']=='create'){
     $data= json_decode(file_get_contents('php://input'), true);
 
     $sql=
-    "REPLACE INTO ingredient ( id, titre, quantite, unite) 
-    VALUES (:id, :titre, :quantite, :unite)";
+    "REPLACE INTO ingredient ( id, titre, quantite, unite, id_recette) 
+    VALUES (:id, :titre, :quantite, :unite, :id_recette)";
 
     $result= $pdo->prepare($sql);
     $result->execute($data);
@@ -23,7 +23,7 @@ if( $_GET['action']=='create'){
 //LECTURE
 if ($_GET['action']=='readAll') {
     
-    $sql="SELECT r.*, i.titre as ingredient FROM ingredient i INNER JOIN recette r ON r.id_ingredient=r.id";
+    $sql="SELECT  *  FROM ingredient;";
 
     $result= $pdo->prepare($sql);
     $result->execute();

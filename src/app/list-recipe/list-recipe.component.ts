@@ -8,18 +8,14 @@ import { HttpService } from '../services/API/http.service';
 })
 export class ListRecipeComponent {
 
-  constructor(private http: HttpService) {
-
-  }
+  constructor(private http: HttpService) {}
   
     recipes: any
 
     delete(id: any) {
 
       this.http.deleteData("recette", id).subscribe({
-  
-        
-        
+ 
         next: (data) => this.getData(),
         error: (err: Error) => console.error('Observer got an error: ' + err),
         complete: () => this.getData()
