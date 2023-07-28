@@ -14,6 +14,7 @@ import { IngredientFormComponent} from './ingredient-form/ingredient-form.compon
 import { IngredientComponent } from './ingredient/ingredient.component';
 
 import { StepFormComponent } from './step-form/step-form.component';
+import { StepComponent } from './step/step.component';
 
 
 
@@ -24,14 +25,19 @@ const routes: Routes = [
   { path : "formRecipe",component: RecipeFormComponent },
   { path : "formRecipe/:id",component: RecipeFormComponent },
   { path : "listRecipe",component: ListRecipeComponent },
+
   { path : "formCategorie",component: CategorieFormComponent },
   { path : "formCategorie/:id",component: CategorieFormComponent },
   { path : "categorie",component: CategorieComponent },
+
   { path : "formIngredient",component: IngredientFormComponent },
   { path : "formIngredient/:id_recette",component: IngredientFormComponent },
   { path : "formIngredient/:id_recette/:id",component: IngredientFormComponent },
   { path : "ingredient",component: IngredientComponent },
-  { path : "formStep",component: StepFormComponent},
+
+  { path : "formStep",component: StepFormComponent },
+  { path : "formStep/:id_recette/:id",component: StepFormComponent},
+  { path : "step",component: StepComponent },
 
 
 ]

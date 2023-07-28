@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './step-form.component.html',
   styleUrls: ['./step-form.component.css']
 })
-export class stepFormComponent {
+export class StepFormComponent {
 
   constructor(private http: HttpService, private router: Router, private route: ActivatedRoute) {
 
@@ -32,7 +32,7 @@ export class stepFormComponent {
 
       next: (data) => console.log(data),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshstepPage()
+      complete: () => this.refreshStepPage()
 
     });
 
@@ -44,14 +44,14 @@ export class stepFormComponent {
 
     if (this.id != null) {
 
-      this.refreshstepPage()
+      this.refreshStepPage()
 
     }
 
   }
 
 
-  refreshstepPage() {
+  refreshStepPage() {
 
 
     this.http.readstepsByRecipe("step", this.id_recette).subscribe({
@@ -71,7 +71,7 @@ export class stepFormComponent {
 
       next: (data) => this.getData(),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshstepPage()
+      complete: () => this.refreshStepPage()
 
     });
 

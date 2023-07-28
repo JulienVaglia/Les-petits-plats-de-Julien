@@ -2,7 +2,7 @@
 
     <h1 class="text-center w-100 mb-5 ">{{ingredients !=undefined ? ingredients[0].rTitre :''}}</h1>
 
-    <div class="w-50 ps-5 ">
+    <div style="width: 55rem;" class=" card ps-5 ms-4 me-5 rounded-3 shadow p-2">
 
         <h2 class="ms-4 mb-5">Création d'un ingrédient :</h2>
 
@@ -23,7 +23,7 @@
             <option>L</option>
         </select>
 
-        <button type="submit" class="btn btn-primary ms-5 ">Envoyer</button>
+        <button style="width: 7rem;" type="submit" class="btn btn-primary ms-5 mb-2 ">Envoyer</button>
     </div>
 
     <input type="hidden" name="id" [(ngModel)]="ingredient.id">
@@ -35,7 +35,7 @@
 
         <h2 class="mb-5">Liste des ingrédients :</h2>
 
-        <div class="p-0 m-3 mt-3 shadow p-2 border-0 container d-flex justify-content-between"
+        <div class="p-0 m-3 mt-4 shadow p-2 container d-flex justify-content-between rounded-3"
             *ngFor="let ingredient of ingredients" style="width: 45rem;">
             <div class="d-flex">
                 <p class="text-center">{{ ingredient.titre }} :&emsp;</p>

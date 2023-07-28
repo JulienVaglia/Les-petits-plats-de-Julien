@@ -69,7 +69,7 @@ if ($_GET['action']=='delete') {
 if( $_GET['action']=='modify'){
     $data= json_decode(file_get_contents('php://input'), true);
 
-    $sql="UPDATE etape SET titre=:titre WHERE id=:id";
+    $sql="UPDATE etape SET description=:description WHERE id=:id";
 
     $result= $pdo->prepare($sql);
     // $result->execute([':id'=>$_GET['id']],);
@@ -79,7 +79,7 @@ if( $_GET['action']=='modify'){
 
 }
 
-//Lire les ingrédients par recette
+//Lire les étapes par recette
 if( $_GET['action']=='readEtape'){
     $data= json_decode(file_get_contents('php://input'), true);
     $sql="SELECT e.*, r.titre as rTitre FROM etape e JOIN recette r ON e.id_recette = r.id WHERE id_recette=:id_recette";
