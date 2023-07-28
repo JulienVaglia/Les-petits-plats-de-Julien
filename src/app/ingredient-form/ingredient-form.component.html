@@ -1,31 +1,62 @@
-<form #form="ngForm" class="mt-5 d-flex flex-wrap " (submit)="formulaire(form)" >
+<form #form="ngForm" class="mt-5 d-flex flex-wrap " (submit)="formulaire(form)">
 
-    <div class="mb-4 w-50">
+    <h1 class="text-center w-100 mb-5 ">{{ingredients !=undefined ? ingredients[0].rTitre :''}}</h1>
+
+    <div class="w-50 ps-5 ">
 
         <h2 class="ms-4 mb-5">Création d'un ingrédient :</h2>
 
         <label for="titre" class="form-label ms-5">Nom : </label>
-        <input [(ngModel)]="ingredient.titre" name="titre" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="titre">
+        <input [(ngModel)]="ingredient.titre" name="titre" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5"
+            id="titre">
 
         <label for="quantite" class="form-label ms-5">Quantité : </label>
-        <input [(ngModel)]="ingredient.quantite" name="quantite" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="quantite">
-        
-        <label for="unite" class="form-label ms-5">Unité : </label>
-        <input [(ngModel)]="ingredient.unite" name="unite" type="text" class="form-control w-25 ms-5 shadow p-2 mb-5" id="unite">
+        <input [(ngModel)]="ingredient.quantite" name="quantite" type="text"
+            class="form-control w-25 ms-5 shadow p-2 mb-5" id="quantite">
+
+        <label for="unite" class="form-label ms-5">Unité : </label><br>
+        <select [(ngModel)]="ingredient.unite" class="ms-5 form-select w-25 ms-5 shadow p-2 mb-5" name="unite"
+            id="unite">
+            <option disabled>-- Choisir votre unité --</option>
+            <option>Pièce(s)</option>
+            <option>g</option>
+            <option>L</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary ms-5 ">Envoyer</button>
     </div>
 
-    <input type="hidden" name="id" [(ngModel)]="ingredient.id" >
-    <input type="hidden" name="id_recette" [(ngModel)]="ingredient.id_recette" >
+    <input type="hidden" name="id" [(ngModel)]="ingredient.id">
+    <input type="hidden" name="id_recette" [(ngModel)]="id_recette">
+
+    <div class="vr"></div>
+
+    <div class="ms-5 me-5 ps-5" style="width: 50rem;">
+
+        <h2 class="mb-5">Liste des ingrédients :</h2>
+
+        <div class="p-0 m-3 mt-3 shadow p-2 border-0 container d-flex justify-content-between"
+            *ngFor="let ingredient of ingredients" style="width: 45rem;">
+            <div class="d-flex">
+                <p class="text-center">{{ ingredient.titre }} :&emsp;</p>
+
+                <p class="card-text ">{{ ingredient.quantite }}&emsp;</p>
+                <p class="card-text ">{{ ingredient.unite }}</p>
+            </div>
+
+            <div class="d-flex">
+                <!-- <a [routerLink]="['/formIngredient',ingredient.id]"
+                    class="card-link btn btn-outline-success me-1">Modifier</a> -->
+
+                <a (click)="delete(ingredient.id)" class="card-link btn btn-danger">Supprimer</a>
+
+            </div>
 
 
-    <div class="w-50">
-
-        <h2>Liste des ingrédients :</h2>
+        </div>
 
     </div>
 
-    <button type="submit" class="btn btn-primary ms-5">Envoyer</button>
+
+
 </form>
-
-
-

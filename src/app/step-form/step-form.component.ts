@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-ingredient-form',
-  templateUrl: './ingredient-form.component.html',
-  styleUrls: ['./ingredient-form.component.css']
+  selector: 'app-step-form',
+  templateUrl: './step-form.component.html',
+  styleUrls: ['./step-form.component.css']
 })
-export class IngredientFormComponent {
+export class stepFormComponent {
 
   constructor(private http: HttpService, private router: Router, private route: ActivatedRoute) {
 
@@ -18,22 +18,21 @@ export class IngredientFormComponent {
   id: any = 0;
 
   recette: any;
-  ingredients: any;
-  ingredient: any = {
+  steps: any;
+  step: any = {
     id: 0,
-    titre: '',
-    quantite: '',
-    unite: '',
+    description: '',
+    ordre: '',
     id_recette: '',
   }
 
   formulaire(form: NgForm) {
 
-    this.http.postData("ingredient", form.value).subscribe({
+    this.http.postData("step", form.value).subscribe({
 
       next: (data) => console.log(data),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshIngredientPage()
+      complete: () => this.refreshstepPage()
 
     });
 
@@ -45,19 +44,19 @@ export class IngredientFormComponent {
 
     if (this.id != null) {
 
-      this.refreshIngredientPage()
+      this.refreshstepPage()
 
     }
 
   }
 
 
-  refreshIngredientPage() {
+  refreshstepPage() {
 
 
-    this.http.readIngredientsByRecipe("ingredient", this.id_recette).subscribe({
+    this.http.readstepsByRecipe("step", this.id_recette).subscribe({
 
-      next: data => this.ingredients = data,
+      next: data => this.steps = data,
       error: (err: Error) => console.log('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification')
 
@@ -68,11 +67,11 @@ export class IngredientFormComponent {
 
   delete(id: any) {
 
-    this.http.deleteData("ingredient", id).subscribe({
+    this.http.deleteData("step", id).subscribe({
 
       next: (data) => this.getData(),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshIngredientPage()
+      complete: () => this.refreshstepPage()
 
     });
 
@@ -80,9 +79,9 @@ export class IngredientFormComponent {
 
   getData() {
 
-    this.http.getData("ingredient").subscribe({
+    this.http.getData("step").subscribe({
 
-      next: (data) => this.ingredient = data,
+      next: (data) => this.step = data,
       error: (err: Error) => console.log('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification')
 
@@ -92,3 +91,4 @@ export class IngredientFormComponent {
 
 
 }
+

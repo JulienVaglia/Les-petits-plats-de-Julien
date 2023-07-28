@@ -13,6 +13,8 @@ import { CategorieComponent } from './categorie/categorie.component';
 import { IngredientFormComponent} from './ingredient-form/ingredient-form.component';
 import { IngredientComponent } from './ingredient/ingredient.component';
 
+import { StepFormComponent } from './step-form/step-form.component';
+
 
 
 
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path : "formIngredient/:id_recette",component: IngredientFormComponent },
   { path : "formIngredient/:id_recette/:id",component: IngredientFormComponent },
   { path : "ingredient",component: IngredientComponent },
+  { path : "formStep",component: StepFormComponent},
 
 
 ]

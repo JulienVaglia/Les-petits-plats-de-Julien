@@ -9,8 +9,8 @@ if( $_GET['action']=='create'){
     $data= json_decode(file_get_contents('php://input'), true);
 
     $sql=
-    "REPLACE INTO ingredient ( id, titre, quantite, unite, id_recette) 
-    VALUES (:id, :titre, :quantite, :unite, :id_recette)";
+    "REPLACE INTO etape ( id, description, ordre, id_recette) 
+    VALUES (:id, :description, :ordre, :id_recette)";
 
     $result= $pdo->prepare($sql);
     $result->execute($data);
@@ -23,8 +23,8 @@ if( $_GET['action']=='create'){
 //LECTURE
 if ($_GET['action']=='readAll') {
     
-    // $sql="SELECT  *  FROM ingredient";
-    $sql="SELECT i.*, r.titre as recette FROM ingredient i INNER JOIN recette r ON i.id_recette=r.id";
+    // $sql="SELECT  *  FROM etape";
+    $sql="SELECT e.*, r.titre as recette FROM etape e INNER JOIN recette r ON e.id_recette=r.id";
 
     $result= $pdo->prepare($sql);
     $result->execute();
@@ -38,10 +38,10 @@ if ($_GET['action']=='readOne') {
     
     // $sql="SELECT  *  FROM ingredient";
     $sql=
-    "SELECT i.*, r.titre as recette 
-    FROM ingredient i 
+    "SELECT e.*, r.titre as recette 
+    FROM etape e 
     INNER JOIN recette r 
-    ON i.id_recette=r.id";
+    ON e.id_recette=r.id";
 
     $result= $pdo->prepare($sql);
     $result->execute();
@@ -55,7 +55,7 @@ if ($_GET['action']=='readOne') {
 //SUPPRIMER
 if ($_GET['action']=='delete') {
     
-    $sql="DELETE FROM ingredient WHERE id=:id";
+    $sql="DELETE FROM etape WHERE id=:id";
 
     $result= $pdo->prepare($sql);
     $result->execute([':id'=>$_GET['id']]);
@@ -69,7 +69,7 @@ if ($_GET['action']=='delete') {
 if( $_GET['action']=='modify'){
     $data= json_decode(file_get_contents('php://input'), true);
 
-    $sql="UPDATE ingredient SET titre=:titre WHERE id=:id";
+    $sql="UPDATE etape SET titre=:titre WHERE id=:id";
 
     $result= $pdo->prepare($sql);
     // $result->execute([':id'=>$_GET['id']],);
@@ -80,9 +80,9 @@ if( $_GET['action']=='modify'){
 }
 
 //Lire les ingrédients par recette
-if( $_GET['action']=='readIngredient'){
+if( $_GET['action']=='readEtape'){
     $data= json_decode(file_get_contents('php://input'), true);
-    $sql="SELECT i.*, r.titre as rTitre FROM ingredient i JOIN recette r ON i.id_recette = r.id WHERE id_recette=:id_recette";
+    $sql="SELECT e.*, r.titre as rTitre FROM etape e JOIN recette r ON e.id_recette = r.id WHERE id_recette=:id_recette";
 
     $result= $pdo->prepare($sql);
     $result->execute([':id_recette'=>$_GET['id_recette']]);

@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
+import { StepFormComponent } from './step-form/step-form.component';
+import { StepComponent } from './step/step.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { IngredientFormComponent } from './ingredient-form/ingredient-form.compo
     CategorieComponent,
     CategorieFormComponent,
     IngredientComponent,
-    IngredientFormComponent
+    IngredientFormComponent,
+    StepFormComponent,
+    StepComponent
   ],
   imports: [
     BrowserModule,

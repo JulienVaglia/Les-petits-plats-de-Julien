@@ -4,10 +4,11 @@
     <div *ngFor="let ingredient of ingredients" class="p-0 m-3 card col-md-4 mt-3 shadow p-2 border-0 container"
         style="width: 18rem;">
 
-        <h2 class="card-title text-center">{{ ingredient.titre }}</h2>
+        <h2 class="card-title text-center">{{ ingredient.titre }} :</h2>
         
         <div class="card-body text-center d-flex flex-wrap">
-            <p class="card-text ">{{ ingredient.quantite }}</p>
+            
+            <p class="card-text ">{{ ingredient.quantite }}&emsp;</p>
             <p class="card-text ">{{ ingredient.unite }}</p>
         </div>
 
