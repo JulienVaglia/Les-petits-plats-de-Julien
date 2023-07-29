@@ -7,7 +7,7 @@
         </div>
         <div class="card-body text-center">
             <div class="mb-2 text-center">
-                <a [routerLink]="['/formStep']" class="card-link btn btn-success">Voir les étapes</a>
+                <a [routerLink]="['/formStep',recette.id]" class="card-link btn btn-success">Voir les étapes</a>
                 <a [routerLink]="['/formIngredient',recette.id]" class="card-link btn btn-success">Ajouter des
                     ingrédients</a><br>
             </div>
