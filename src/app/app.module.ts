@@ -16,8 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
-import { StepFormComponent } from './step-form/step-form.component';
-import { StepComponent } from './step/step.component';
+import { EtapeFormComponent } from './etape/etape-form/etape-form.component';
+import { EtapeComponent } from './etape/etape/etape.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,8 @@ import { StepComponent } from './step/step.component';
     CategorieFormComponent,
     IngredientComponent,
     IngredientFormComponent,
-    StepFormComponent,
-    StepComponent
+    EtapeFormComponent,
+    EtapeComponent
   ],
   imports: [
     BrowserModule,

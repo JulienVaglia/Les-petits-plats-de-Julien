@@ -49,9 +49,9 @@ export class HttpService {
     return this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/' + table + '.php?action=readIngredient&id_recette=' + id_recette);
   }
 
-  readstepsByRecipe(table: any, id_recette: any): Observable<any> {
+  readEtapesByRecipe(table: any, id_recette: any): Observable<any> {
 
-    return this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/' + table + '.php?action=readStep&id_recette=' + id_recette);
+    return this.http.get('http://localhost/Angular/LespetitsplatsdeJulien/src/app/services/API/' + table + '.php?action=readEtape&id_recette=' + id_recette);
   }
 }
 
