@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpService } from '../services/API/http.service';
 
 @Component({
@@ -7,37 +7,23 @@ import { HttpService } from '../services/API/http.service';
   styleUrls: ['./ingredient.component.css']
 })
 export class IngredientComponent {
-
-  constructor(private http: HttpService) { }
-
-  ingredients: any
-
-  delete(id: any) {
-
-    this.http.deleteData("ingredient", id).subscribe({
-
-      next: (data) => this.getData,
-      error: (err: Error) => console.error('Observer got an error: ' + err),
-      complete: () => this.getData()
-
-    });
+  objet = {
+    nom: '',
+    quantite: '',
+    unite: ''
 
   }
 
-  getData() {
+@Output() ingrEvent = new EventEmitter<any>();
 
-    this.http.getData("ingredient").subscribe({
+  addIngredient(nom: string, quantite: string, unite: string) {
+   
+    this.objet.nom = nom;
+    this.objet.unite = unite;
+    this.objet.quantite = quantite;
 
-      
-      next: (data) => this.ingredients = data,
-      error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notificationInit')
+  this.ingrEvent.emit(this.objet)
 
-    });
   }
 
-  ngOnInit(): void {
-
-    this.getData()
-  }
 }

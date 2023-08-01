@@ -30,6 +30,24 @@ export class RecipeFormComponent {
     photo: '',
   }
 
+ingredients: Array<any>=[];
+
+
+  // Formulaire Emitter sur page form-recette
+  addIngr(event:any){
+
+    console.log(this.ingredients);
+    this.ingredients.push({
+
+      quantite: event.quantite,
+      nom: event.nom,
+      unite: event.unite
+
+    })
+
+  }
+
+
   formulaire(form: NgForm) {
     console.log(form.value);
     
@@ -42,8 +60,8 @@ export class RecipeFormComponent {
 
     this.router.navigate(['listRecipe'])
 
-
   }
+
 
   ngOnInit() {
 

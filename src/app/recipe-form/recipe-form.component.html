@@ -52,10 +52,15 @@
 
     <input type="hidden" name="id" [(ngModel)]="recette.id" >
 
-    <!-- <div class="apercu ms-5 mb-4">
-        <p>Aperçu :</p>
-        <ngIf img src="recette.photo" class="w-25 rounded" alt="">
-    </div> -->
+    <app-ingredient (ingrEvent)="addIngr($event)"></app-ingredient>
+
+    <ul class="ms-5">
+        <li *ngFor="let ingredient of ingredients"> 
+            {{ingredient.quantite}}
+            {{ingredient.unite}}
+            {{ingredient.nom}}
+        </li>
+    </ul>
 
     <button type="submit" class="btn btn-primary ms-5">Envoyer</button>
 </form>

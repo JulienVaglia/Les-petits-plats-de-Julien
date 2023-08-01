@@ -1,6 +1,6 @@
-<h1 class="text-center mt-3 mb-5">Liste des ingrédients</h1>
+<!-- <h1 class="text-center mt-3 mb-5">Liste des ingrédients</h1>
 
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap form-group">
     <div *ngFor="let ingredient of ingredients" class="p-0 m-3 card col-md-4 mt-3 shadow p-2 border-0 container"
         style="width: 18rem;">
 
@@ -20,4 +20,23 @@
 
         </div>
     </div>
+</div> -->
+
+
+<div class="form-group border mx-auto w-50 p-4 mx-auto rounded-3">
+
+    <label for="nom" class="ms-5" form-label>Ingrédients</label>
+    <input type="text" id="nom" #nom class="form-control w-50 ms-5">
+
+    <label for="quantite" class="ms-5">Quantité</label>
+    <input type="number" id="quantite" #quantite class="form-control w-50 ms-5">
+
+    <label for="unite" class="ms-5">Unité</label>
+    <input type="text" id="unite" #unite class="form-control w-50 ms-5">
+
+    <div class="btn btn-info ms-5 mt-3" (click)="addIngredient(nom.value, quantite.value, unite.value)" >Ajouter intrédient</div>
+
 </div>
+
+
+

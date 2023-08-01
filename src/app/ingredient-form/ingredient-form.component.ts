@@ -26,17 +26,18 @@ export class IngredientFormComponent {
     unite: '',
     id_recette: '',
   }
+  
 
   formulaire(form: NgForm) {
 
     this.http.postData("ingredient", form.value).subscribe({
 
-      next: (data) => console.log(data),
+      next: (data) => {this.ingredient.quantite=''; this.ingredient.titre=""; this.ingredient.unite=""},
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshIngredientPage()
+      complete: () => this.refreshIngredientPage(),
 
     });
-
+    
   }
 
   ngOnInit(): void {
@@ -72,7 +73,7 @@ export class IngredientFormComponent {
 
       next: (data) => this.getData(),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshIngredientPage()
+      complete: () => console.log('Suppression ok')
 
     });
 

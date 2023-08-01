@@ -16,6 +16,8 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { EtapeFormComponent } from './etape/etape-form/etape-form.component';
 import { EtapeComponent } from './etape/etape/etape.component';
 
+import { OneRecipeComponent} from './one-recipe/one-recipe.component';
+
 
 
 
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path : "formEtape",component: EtapeFormComponent },
   { path : "formEtape/:id_recette",component: EtapeFormComponent},
   { path : "etape",component: EtapeComponent },
+
+  { path : "oneRecipe/:id",component: OneRecipeComponent},
 
 
 ]

@@ -11,7 +11,7 @@
                 <a [routerLink]="['/formIngredient',recette.id]" class="card-link btn btn-success">Ajouter des
                     ingrédients</a><br>
             </div>
-
+            <a [routerLink]="['/oneRecipe',recette.id]" class="card-link btn btn-outline-success">Voir la recette</a>
             <a [routerLink]="['/formRecipe',recette.id]" class="card-link btn btn-outline-success">Modifier</a>
             <a (click)="delete(recette.id)" class="card-link btn btn-danger">Supprimer</a>
         </div>

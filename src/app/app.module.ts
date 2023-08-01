@@ -18,6 +18,9 @@ import { IngredientComponent } from './ingredient/ingredient.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { EtapeFormComponent } from './etape/etape-form/etape-form.component';
 import { EtapeComponent } from './etape/etape/etape.component';
+import { OneRecipeComponent } from './one-recipe/one-recipe.component';
+import { QuantityPipe } from './quantity.pipe';
+import { EuroPipe } from './euro.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { EtapeComponent } from './etape/etape/etape.component';
     IngredientComponent,
     IngredientFormComponent,
     EtapeFormComponent,
-    EtapeComponent
+    EtapeComponent,
+    OneRecipeComponent,
+    QuantityPipe,
+    EuroPipe
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ if( $_GET['action']=='create'){
 if ($_GET['action']=='readAll') {
     
     // $sql="SELECT  *  FROM etape";
-    $sql="SELECT e.*, r.titre as recette FROM etape e INNER JOIN recette r ON e.id_recette=r.id";
+    $sql="SELECT e.*, r.titre as recette FROM etape e RIGHT JOIN recette r ON e.id_recette=r.id";
 
     $result= $pdo->prepare($sql);
     $result->execute();
@@ -82,7 +82,7 @@ if( $_GET['action']=='modify'){
 //Lire les étapes par recette
 if( $_GET['action']=='readEtape'){
     $data= json_decode(file_get_contents('php://input'), true);
-    $sql="SELECT e.*, r.titre as rTitre FROM etape e JOIN recette r ON e.id_recette = r.id WHERE id_recette=:id_recette";
+    $sql="SELECT e.*, r.titre as rTitre FROM etape e JOIN recette r ON e.id_recette = r.id WHERE r.id=:id_recette";
 
     $result= $pdo->prepare($sql);
     $result->execute([':id_recette'=>$_GET['id_recette']]);

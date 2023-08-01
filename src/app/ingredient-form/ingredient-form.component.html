@@ -1,6 +1,6 @@
 <form #form="ngForm" class="mt-5 d-flex flex-wrap " (submit)="formulaire(form)">
 
-    <h1 class="text-center w-100 mb-5 ">{{ingredients !=undefined ? ingredients[0].rTitre :''}}</h1>
+    <h1 class="text-center w-100 mb-5 ">{{ ingredients !=undefined ? ingredients[0].rTitre :''}}</h1>
 
     <div style="width: 55rem;" class=" card ps-5 ms-4 me-5 rounded-3 shadow p-2">
 
@@ -35,18 +35,15 @@
 
         <h2 class="mb-5">Liste des ingrédients :</h2>
 
-        <div class="p-0 m-3 mt-4 shadow p-2 container d-flex justify-content-between rounded-3"
-            *ngFor="let ingredient of ingredients" style="width: 45rem;">
+        <div class="p-0 m-3 mt-4 shadow p-2 container d-flex justify-content-between rounded-3" *ngFor="let ingredient of ingredients" style="width: 45rem;">
             <div class="d-flex">
-                <p class="text-center">{{ ingredient.titre }} :&emsp;</p>
-
+                
+                <p class="text-center">{{ ingredient.titre }}&emsp;</p>
                 <p class="card-text ">{{ ingredient.quantite }}&emsp;</p>
                 <p class="card-text ">{{ ingredient.unite }}</p>
             </div>
 
             <div class="d-flex">
-                <!-- <a [routerLink]="['/formIngredient',ingredient.id]"
-                    class="card-link btn btn-outline-success me-1">Modifier</a> -->
 
                 <a (click)="delete(ingredient.id)" class="card-link btn btn-danger">Supprimer</a>
 

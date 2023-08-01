@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/API/http.service';
 
+
 @Component({
   selector: 'app-etape-form',
   templateUrl: './etape-form.component.html',
@@ -29,35 +30,32 @@ export class EtapeFormComponent {
 
     this.http.postData("etape", form.value).subscribe({
 
-      next: (data) => console.log(data),
+      next: (data) => this.refreshEtapePage(),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshEtapePage()
+      complete: () => this.refreshEtapePage(),
 
     });
-
+    
   }
 
   ngOnInit(): void {
 
     this.id_recette = this.route.snapshot.paramMap.get('id_recette');
 
-    if (this.id != null) {
+    if (this.id_recette != null) {
 
       this.refreshEtapePage()
-
     }
-
   }
 
 
   refreshEtapePage() {
 
-
     this.http.readEtapesByRecipe("etape", this.id_recette).subscribe({
 
       next: data => this.etapes = data,
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification')
+      complete: () => console.log('Refresh OK')
 
     });
 
@@ -68,9 +66,9 @@ export class EtapeFormComponent {
 
     this.http.deleteData("etape", id).subscribe({
 
-      next: (data) => this.getData(),
+      next: (data) => this.refreshEtapePage(),
       error: (err: Error) => console.log('Observer got an error: ' + err),
-      complete: () => this.refreshEtapePage()
+      complete: () => console.log('Suppression ok')
 
     });
 

@@ -82,7 +82,7 @@ if( $_GET['action']=='modify'){
 //Lire les ingrédients par recette
 if( $_GET['action']=='readIngredient'){
     $data= json_decode(file_get_contents('php://input'), true);
-    $sql="SELECT i.*, r.titre as rTitre FROM ingredient i JOIN recette r ON i.id_recette = r.id WHERE id_recette=:id_recette";
+    $sql="SELECT i.*, r.titre as rTitre FROM ingredient i  RIGHT JOIN recette r ON i.id_recette = r.id WHERE id_recette=:id_recette";
 
     $result= $pdo->prepare($sql);
     $result->execute([':id_recette'=>$_GET['id_recette']]);

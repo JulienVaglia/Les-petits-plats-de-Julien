@@ -1,0 +1,31 @@
+<div class="p-0 m-3 card col-md-4 mt-3 w-25" style="width: 15rem;">
+    <img src="{{ recette.photo }}" class=" card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title text-center">{{ recette.titre }}</h5>
+        <p class="card-text">{{ recette.description }}</p>
+    </div>
+    <div class="card-body text-center">
+        <div class="mb-2 text-center">
+            <a [routerLink]="['/formEtape',recette.id]" class="card-link btn btn-success">Voir les étapes</a>
+            <a [routerLink]="['/formIngredient',recette.id]" class="card-link btn btn-success">Ajouter des
+                ingrédients</a><br>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h4> Pour {{ nbPersonne }} personne(s)</h4>
+        <button (click)="nbPersonne= nbPersonne-1" class="m-2 btn btn-secondary">-</button>
+        <button (click)="nbPersonne= nbPersonne+1" class="m-2 btn btn-secondary">+</button>
+    </div>
+    <div class="card-body">
+        <ul>
+            <li *ngFor="let ingredient of ingredients">
+                {{ ingredient.quantite | quantity:nbPersonne }}
+                {{ ingredient.unite }}
+                {{ ingredient.nom }}
+            </li>
+        </ul>
+        Coût : {{ 20 | quantity:nbPersonne | euro }}
+
+    </div>
+</div>
